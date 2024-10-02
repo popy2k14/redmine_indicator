@@ -4,9 +4,9 @@ de:
   my_issues_next : "Meine nächsten Aufgaben"
   issues_due: "Fällige Aufgaben"
   issues_today : "Heutige Aufgaben"
-  issues_next : "Nächste Aufgaben"
+  issues_next : "Alle Offenen Aufgaben"
   my_issues_opened_closed_today : "Meine offenen und geschlossenen Aufgaben des Tages"
-  my_issues_summary : "Zusammenfassung meiner Aufgaben"
+  issues_summary : "Zusammenfassung"
   my_issues_by_priority : "Meine Probleme nach Priorität"
   my_issues_by_status : "Meine Probleme nach Status"
   my_issues_by_tracker : "Meine Aufgaben nach Tracker"
@@ -26,4 +26,6 @@ de:
   indicator_report_issues_by_tracker_all: "Nach Tracker (inkl. geschlossenen)"
   indicator_report_spent_time_10days: "Verbrauchte Zeit innerhalb der letzten 10 Tage"
   indicator_report_spent_time_10weeks: "Verbrauchte Zeit innerhalb der letzten 10 Wochen"
+  indicator_opened_issues: "geöffnet"
+  indicator_closed_issues: "geschlossen"
 

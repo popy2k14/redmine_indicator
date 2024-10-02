@@ -4,18 +4,9 @@
   querynext = IssueQuery.new(:name => l("issues_next"), :user => User.current)
   querynext.add_filter "assigned_to_id", "=", current_user_ids
   querynext.add_filter "status_id", "o"
-  querynext.add_filter "due_date", ">=", [(Date.today+1).strftime("%Y-%m-%d")]
   querynext.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
   querynext.sort_criteria = settings[:sort].presence || [["due_date", "desc"]]
   issuesnext = querynext.issues()
-
-  queryw = IssueQuery.new(:name => l("issues_next_without_due"), :user => User.current)
-  queryw.add_filter "assigned_to_id", "=", current_user_ids
-  queryw.add_filter "status_id", "o"
-  queryw.add_filter "due_date", "!*"
-  queryw.column_names = settings[:columns].presence || ["project", "tracker", "status", "subject"]
-  queryw.sort_criteria = settings[:sort].presence || [["due_date", "desc"]]
-  issuesnext = issuesnext + queryw.issues()
 
   querydue = IssueQuery.new(:name => l("issues_due"), :user => User.current)
   querydue.add_filter "assigned_to_id", "=", current_user_ids

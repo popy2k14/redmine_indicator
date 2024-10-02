@@ -1,7 +1,7 @@
 <%=
   current_user_ids = [User.current.id] + User.current.group_ids
 
-  queryopened = IssueQuery.new(:name => l("label_open_issues")+'/'+l("label_closed_issues"), :user => User.current)
+  queryopened = IssueQuery.new(:name => l("indicator_opened_issues")+'/'+l("indicator_closed_issues"), :user => User.current)
   queryopened.add_filter "assigned_to_id", "=", current_user_ids
   queryopened.add_filter "status_id", "*"
   queryopened.add_filter "created_on", ">=" , [(Date.today-10).strftime("%Y-%m-%d")]
@@ -17,7 +17,7 @@
   queryclosed.sort_criteria = settings[:sort].presence || [["due_date", "desc"]]
   issuesclosed = queryclosed.issues()
 
-  titles = ['opened','closed']
+  titles = [l("indicator_opened_issues"),l("indicator_closed_issues")]
   label = []
   dataopened = []
   dataclosed = []
@@ -25,16 +25,16 @@
   dtesclosed = {}
 
   (-10..0).each do |i|
-    label.push((Date.today+i).strftime("%a, %d %b %Y"))
-    dtesopened[(Date.today+i).strftime("%a, %d %b %Y")]=[]
-    dtesclosed[(Date.today+i).strftime("%a, %d %b %Y")]=[]
+    label.push(I18n.l((Date.today+i), format: '%a, %d %b %Y'))
+    dtesopened[I18n.l((Date.today+i), format: '%a, %d %b %Y')]=[]
+    dtesclosed[I18n.l((Date.today+i), format: '%a, %d %b %Y')]=[]
   end
 
   issuesopened.each do |issue|
-    dtesopened[issue.created_on.strftime("%a, %d %b %Y")] = (dtesopened[issue.created_on.strftime("%a, %d %b %Y")] || []).push(issue)
+    dtesopened[I18n.l(issue.created_on, format: '%a, %d %b %Y')] = (dtesopened[I18n.l(issue.created_on, format: '%a, %d %b %Y')] || []).push(issue)
   end
   issuesclosed.each do |issue|
-    dtesclosed[issue.closed_on.strftime("%a, %d %b %Y")] = (dtesclosed[issue.closed_on.strftime("%a, %d %b %Y")] || []).push(issue)
+    dtesclosed[I18n.l(issue.closed_on, format: '%a, %d %b %Y')] = (dtesclosed[I18n.l(issue.closed_on, format: '%a, %d %b %Y')] || []).push(issue)
   end
 
   dtesopened.keys.each do |dte|

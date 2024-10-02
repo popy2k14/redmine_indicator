@@ -1,4 +1,4 @@
-<h3><%= l(title) %></h3>
+<h3><%= l("issues_summary") %></h3>
 <table class="indicator summary">
   <tr>
     <td><div class="circle <%= issuesdue.length > 0 ? 'due' : 'nothing' %>"><h1><%= link_to issuesdue.length, _project_issues_path(querydue.project, querydue.as_params) %></h1></div></td>
